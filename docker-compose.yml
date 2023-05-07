@@ -22,15 +22,17 @@ services:
     working_dir: /var/www/html
   symfony:
     image: s1doryak/symfony-cli
+    links:
+      - database
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
   database:
     image: mysql:8
     environment:
-      MYSQL_ROOT_PASSWORD: 'symfony'
+      MYSQL_ROOT_PASSWORD: symfony
       MYSQL_DATABASE: symfony
       MYSQL_USER: symfony
-      MYSQL_PASSWORD: 'symfony'
+      MYSQL_PASSWORD: symfony
     ports:
       - "3306:3306"
