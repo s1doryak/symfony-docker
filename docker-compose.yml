@@ -1,0 +1,36 @@
+# Images from: https://github.com/s1doryak/symfony-docker
+version: "3.8"
+services:
+  nginx:
+    image: s1doryak/symfony-nginx
+    command: nginx -g "daemon off;"
+    links:
+      - php
+    ports:
+      - "80:80"
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - .:/var/www/html
+  php:
+    image: s1doryak/symfony-fpm
+    links:
+      - database
+    ports:
+      - "9000:9000"
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+  symfony:
+    image: s1doryak/symfony-cli
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+  database:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 'symfony'
+      MYSQL_DATABASE: symfony
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: 'symfony'
+    ports:
+      - "3306:3306"
