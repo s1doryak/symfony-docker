@@ -4,7 +4,7 @@ Services:
 - Nginx
 - PHP-FPM
 - MySQL
-- (Symfony CLI)[https://symfony.com/download]
+- [Symfony CLI](https://symfony.com/download)
 
 ## Usage
 
@@ -12,6 +12,12 @@ Just copy `docker-compose.yml` to root of your project and run:
 
 ```
 docker-compose up -d
+```
+
+Then check your `.env` file `DATABASE_URL` variable:
+
+```
+DATABASE_URL="mysql://symfony:symfony@database:3306/symfony?serverVersion=8.0.33&charset=utf8mb4"
 ```
 
 ### Symfony CLI
